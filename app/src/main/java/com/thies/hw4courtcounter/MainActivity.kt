@@ -10,17 +10,19 @@ import com.thies.hw4courtcounter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // Moved these variables to CounterViewModel class
     /*var scoreTeamA = 0
     var scoreTeamB = 0*/
     private lateinit var binding: ActivityMainBinding
     private val counterViewModel:CounterViewModel by viewModels()
-    //private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Log.d(TAG, "Got a CounterViewModel:$counterViewModel")
+        // Add display functions that prevent display being reset upon rotating phone
+        displayForTeamA(counterViewModel.scoreTeamA)
+        displayForTeamB(counterViewModel.scoreTeamB)
     }
 
     /**
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addOneForTeamA(v: View?) {
         // scoreTeamA++
-        counterViewModel.addOneForTeamA()
+        counterViewModel.oneForTeamA()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addTwoForTeamA(v: View?) {
         // scoreTeamA += 2
-        counterViewModel.addTwoForTeamA()
+        counterViewModel.twoForTeamA()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addThreeForTeamA(v: View?) {
         // scoreTeamA += 3
-        counterViewModel.addThreeForTeamA()
+        counterViewModel.threeForTeamA()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addOneForTeamB(v: View?) {
         // scoreTeamB++
-        counterViewModel.addOneForTeamB()
+        counterViewModel.oneForTeamB()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addTwoForTeamB(v: View?) {
         // scoreTeamB += 2
-        counterViewModel.addTwoForTeamB()
+        counterViewModel.twoForTeamB()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun addThreeForTeamB(v: View?) {
         // scoreTeamB += 3
-        counterViewModel.addThreeForTeamB()
+        counterViewModel.threeForTeamB()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
